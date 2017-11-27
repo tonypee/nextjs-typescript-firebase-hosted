@@ -1,4 +1,4 @@
-# Next.js with Firebase Hosting Rewrites
+# Next.js / typescript / firebase hosted
 
 Based off the SSR sample in: https://github.com/firebase/functions-samples
 
