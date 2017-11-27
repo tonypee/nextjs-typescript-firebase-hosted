@@ -12,10 +12,10 @@
     "build": "yarn clean && tsc && next build ./dist && cp package.json dist/package.json && yarn create-public",
     "start": "next start ./dist",
     "clean": "rm -rf dist/",
-    "create-public": "mkdir dist/public && echo \"not used\" > dist/public/index.html"
+    "create-public": "mkdir dist/public && echo \"not used\" > dist/public/placeholder.html"
   },
   "dependencies": {
-    "concurrently": "^3.5.1",
+    "babel-runtime": "^6.26.0",
     "firebase-admin": "^5.0.1",
     "firebase-functions": "^0.7.3",
     "next": "beta",
@@ -26,7 +26,7 @@
     "@types/node": "^8.0.53",
     "@types/react": "^16.0.25",
     "@types/react-dom": "^16.0.3",
-    "concurrently": "^3.1.0",
+    "concurrently": "^3.5.1",
     "typescript": "2.6.1"
   }
 }
