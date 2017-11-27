@@ -1,0 +1,32 @@
+{
+  "name": "nextjs-typescript-firebase-hosting",
+  "version": "1.0.0",
+  "author": "Tony Polinelli",
+  "license": "MIT",
+  "description": "Next.js / Typescript / Firebase, hosted on cloud functions",
+  "repository": "https://github.com/tonypee/nextjs-typescript-firebase-hosted.git",
+  "scripts": {
+    "predeploy": "yarn && yarn build && cd dist && yarn",
+    "deploy": "firebase deploy",
+    "dev": "concurrently \"tsc --watch\" \"next ./dist\"",
+    "build": "yarn clean && tsc && next build ./dist && cp package.json dist/package.json && yarn create-public",
+    "start": "next start ./dist",
+    "clean": "rm -rf dist/",
+    "create-public": "mkdir dist/public && echo \"not used\" > dist/public/index.html"
+  },
+  "dependencies": {
+    "concurrently": "^3.5.1",
+    "firebase-admin": "^5.0.1",
+    "firebase-functions": "^0.7.3",
+    "next": "beta",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.53",
+    "@types/react": "^16.0.25",
+    "@types/react-dom": "^16.0.3",
+    "concurrently": "^3.1.0",
+    "typescript": "2.6.1"
+  }
+}
