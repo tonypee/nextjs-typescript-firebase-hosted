@@ -8,3 +8,7 @@ var handle = app.getRequestHandler();
 exports.next = functions.https.onRequest((req, res) => {
   return app.prepare().then(() => handle(req, res));
 });
+
+exports.example = functions.https.onRequest((req, res) => {
+  res.send('<div>Hello World</div>')
+});

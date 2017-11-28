@@ -6,16 +6,16 @@
   "description": "Next.js / Typescript / Firebase, hosted on cloud functions",
   "repository": "https://github.com/tonypee/nextjs-typescript-firebase-hosted.git",
   "scripts": {
-    "install": "mkdir dist && mkdir dist/pages && mkdir dist/static",
-    "predeploy": "yarn clean && yarn && yarn build && cd dist && yarn",
+    "install": "mkdir -p dist dist/public dist/pages dist/static",
+    "predeploy": "yarn build && cd dist && yarn",
+    "serve": "firebase serve",
     "deploy": "firebase deploy",
     "dev": "concurrently \"yarn watch-static\" \"tsc --watch\" \"next ./dist\"",
-    "build": "yarn clean && tsc && next build ./dist && cp package.json dist/package.json && yarn create-public && yarn create-static",
+    "build": "yarn clean && tsc && next build ./dist && cp package.json dist/package.json && yarn create-public",
     "start": "next start ./dist",
-    "clean": "rm -rf dist/",
-    "watch-static": "watch-run -i -p 'src/static/**' yarn create-static",
-    "create-static": "rm -rf dist/static && mkdir dist/static && cp src/static/* dist/static",
-    "create-public": "echo \"not used\" > dist/public/__placeholder.html"
+    "clean": "rm -rf dist/ && yarn install",
+    "watch-static": "watch-run -i -p 'src/static/**' rm -rf dist/static && mkdir dist/static && cp src/static/* dist/static",
+    "create-public": "mkdir dist/public/static && cp src/static/* dist/public/static && echo \"not used\" > dist/public/__placeholder.html"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
