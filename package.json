@@ -10,11 +10,12 @@
     "predeploy": "yarn build && cd dist && yarn",
     "serve": "firebase serve",
     "deploy": "firebase deploy",
-    "dev": "concurrently \"yarn watch-static\" \"tsc --watch\" \"next ./dist\"",
+    "dev": "concurrently 'yarn watch-static' 'tsc --watch' 'next ./dist'",
     "build": "yarn clean && tsc && next build ./dist && cp package.json dist/package.json && yarn create-public",
     "start": "next start ./dist",
     "clean": "rm -rf dist/ && yarn install",
-    "watch-static": "watch-run -i -p 'src/static/**' rm -rf dist/static && mkdir dist/static && cp src/static/* dist/static",
+    "reset": "rm -rf node_modules dist && yarn",
+    "watch-static": "watch-run -i -p 'src/static/**' 'rm -rf dist/static && mkdir dist/static && cp src/static/* dist/static'",
     "create-public": "mkdir dist/public/static && cp src/static/* dist/public/static && echo \"not used\" > dist/public/__placeholder.html"
   },
   "dependencies": {
