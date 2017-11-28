@@ -6,13 +6,16 @@
   "description": "Next.js / Typescript / Firebase, hosted on cloud functions",
   "repository": "https://github.com/tonypee/nextjs-typescript-firebase-hosted.git",
   "scripts": {
-    "predeploy": "yarn && yarn build && cd dist && yarn",
+    "install": "mkdir dist && mkdir dist/pages && mkdir dist/static",
+    "predeploy": "yarn clean && yarn && yarn build && cd dist && yarn",
     "deploy": "firebase deploy",
-    "dev": "concurrently \"tsc --watch\" \"next ./dist\"",
-    "build": "yarn clean && tsc && next build ./dist && cp package.json dist/package.json && yarn create-public",
+    "dev": "concurrently \"yarn watch-static\" \"tsc --watch\" \"next ./dist\"",
+    "build": "yarn clean && tsc && next build ./dist && cp package.json dist/package.json && yarn create-public && yarn create-static",
     "start": "next start ./dist",
     "clean": "rm -rf dist/",
-    "create-public": "mkdir dist/public && echo \"not used\" > dist/public/placeholder.html"
+    "watch-static": "watch-run -i -p 'src/static/**' yarn create-static",
+    "create-static": "rm -rf dist/static && mkdir dist/static && cp src/static/* dist/static",
+    "create-public": "echo \"not used\" > dist/public/__placeholder.html"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
@@ -20,7 +23,8 @@
     "firebase-functions": "^0.7.3",
     "next": "beta",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "watch-run": "^1.2.5"
   },
   "devDependencies": {
     "@types/node": "^8.0.53",
